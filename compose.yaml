@@ -1,6 +1,9 @@
 services:
   invitation:
-    build: .
+    build:
+      context: .
+      args:
+        VITE_SITE_URL: ${SITE_URL:-https://ea.csweekly.ru}
     ports:
       - "${PORT:-80}:80"
     restart: unless-stopped

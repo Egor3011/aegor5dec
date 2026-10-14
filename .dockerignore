@@ -5,3 +5,5 @@ dist
 .DS_Store
 tests
 README.md
+.env
+.env.*
