@@ -1,0 +1,36 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Egor18//Birthday Invitation//RU
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:egor-18-2026@birthday.local
+DTSTAMP:20261012T000000Z
+DTSTART:20261205T150000Z
+DTEND:20261206T080000Z
+SUMMARY:Егору Аксёнову — 18!
+LOCATION:Брянск\, с. Толмачево\, СДТ Союз\, 195
+DESCRIPTION:5–6 декабря — день рождения Егора 
+ Аксёнова.\n18:00–22:00 — концерт UGLYSTEPHAN\, клуб
+  Deus.\n22:00–23:30 — добираемся до дома\; транс
+ фер — минивэн Hyundai Staria.\n22:30–11:00 (6 декабря
+ ) — тусовка на доме: баня\, кальян\, алкого
+ ль.\nАдрес дома: Брянск\, с. Толмачево\, СДТ
+  Союз\, 195.\nДля москвичей: 06:35 встреча на в
+ окзале\; 06:50–11:02 поезд Москва → Брянск\;\n1
+ 1:30–17:30 обед и знакомство с Брянском.\n6 де
+ кабря: 12:00 завтрак\; 13:23–17:31 поезд Брянск 
+ → Москва.\nВремя поездов — из приглашени
+ я. Проверьте актуальное расписание пере
+ д покупкой.\nНачало тусовки и трансфер ча
+ стично пересекаются — время сбора уточн
+ яется.\nКонтакт Егора в Telegram: @zavoz_contenta — ht
+ tps://t.me/zavoz_contenta
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-P1D
+ACTION:DISPLAY
+DESCRIPTION:Завтра — день рождения Егора!
+END:VALARM
+END:VEVENT
+END:VCALENDAR

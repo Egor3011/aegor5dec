@@ -1,0 +1,15 @@
+{
+  "name": "egor-birthday-invitation",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "predev": "node scripts/generate-calendar.mjs",
+    "dev": "vite --host 0.0.0.0",
+    "build": "node scripts/generate-calendar.mjs && vite build",
+    "preview": "vite preview --host 0.0.0.0",
+    "test": "node --test"
+  },
+  "dependencies": { "vue": "^3.5.22" },
+  "devDependencies": { "@vitejs/plugin-vue": "^6.0.1", "vite": "^7.1.9" }
+}
