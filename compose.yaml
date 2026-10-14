@@ -3,7 +3,7 @@ services:
     build:
       context: .
       args:
-        VITE_SITE_URL: ${SITE_URL:-https://ea.csweekly.ru}
+        VITE_SITE_URL: ${SITE_URL:-http://31.57.93.209}
     ports:
       - "${PORT:-80}:80"
     restart: unless-stopped
