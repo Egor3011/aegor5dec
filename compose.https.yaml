@@ -1,0 +1,31 @@
+services:
+  invitation:
+    build:
+      context: .
+      args:
+        VITE_SITE_URL: https://${SITE_DOMAIN:-ea.csweekly.ru}
+    expose:
+      - "80"
+    restart: unless-stopped
+
+  caddy:
+    image: caddy:2-alpine
+    environment:
+      SITE_DOMAIN: ${SITE_DOMAIN:-ea.csweekly.ru}
+      SERVER_IP: ${SERVER_IP:-31.57.93.209}
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      invitation:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  caddy_data:
+  caddy_config:
