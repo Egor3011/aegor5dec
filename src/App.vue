@@ -14,6 +14,7 @@ const ticket = ref(null)
 const confetti = ref([])
 const year = event.year
 const calendarUrl = googleCalendarUrl()
+const appleCalendarUrl = `webcal://${window.location.host}/egor-18.ics`
 const mapUrl = `https://yandex.ru/maps/?text=${encodeURIComponent(event.location)}`
 const schedule = computed(() => activeDay.value === 'saturday' ? saturday : sunday)
 const secondsLeft = computed(() => Math.max(0, Math.floor((new Date(event.start).getTime() - now.value) / 1000)))
@@ -201,17 +202,19 @@ onUnmounted(() => {
         <div class="faq-list" data-reveal>
           <details><summary>Что взять с собой?<span class="faq-plus"></span></summary><p>Удобную одежду для дома, вещи для бани и всё, что нужно тебе на одну ночь. Для поездки на поезде — документ, на который оформлен билет.</p></details>
           <details><summary>Как будет работать трансфер?<span class="faq-plus"></span></summary><p>После концерта едем из клуба Deus к дому на минивэне Hyundai Staria. Точку посадки и точное время сообщим перед поездкой. На плане дорога указана с 22:00 до 23:30, а тусовка — с 22:30: время прибытия уточняется.</p></details>
-          <details><summary>Как сохранить дату на телефоне?<span class="faq-plus"></span></summary><p>Нажми «Сохранить дату» и выбери календарь. Для iPhone и других календарей есть файл .ics с напоминанием за сутки. Для Android — ссылка в Google Calendar: проверь уведомление перед сохранением. Если браузер скачал .ics, открой его в приложении календаря; на iPhone также можно открыть вложение через Mail.</p></details>
+          <details><summary>Как сохранить дату на телефоне?<span class="faq-plus"></span></summary><p>Нажми «Сохранить дату» и выбери календарь. Apple Calendar откроет подписку на календарь праздника — подтверди её добавление. Для Android — ссылка в Google Calendar: проверь уведомление перед сохранением. Чтобы добавить событие через файл, выбери «Скачать файл события» и открой .ics в календаре; на iPhone также можно открыть вложение через Mail.</p></details>
           <details><summary>Где купить билеты на поезд?<span class="faq-plus"></span></summary><p>В разделе «Как добраться» есть ссылки на Туту для обоих направлений. Выбери 5 декабря для Москвы → Брянска и 6 декабря для обратной дороги. Сверь время поезда перед оплатой.</p></details>
         </div>
       </section>
 
-      <section id="contact" class="contact-section wrap" aria-labelledby="contact-title">
+      <section class="contact-section wrap" aria-labelledby="guest-title">
         <div class="contact-card" data-reveal>
           <div class="contact-copy">
-            <span class="eyebrow">НА СВЯЗИ / ЕГОР</span>
-            <h2 id="contact-title" class="display">ЕСТЬ ВОПРОСЫ? ПИШИ.</h2>
-            <p>По дороге, трансферу или планам — найди меня в Telegram.</p>
+            <span class="eyebrow">ДЛЯ ДРУЗЕЙ НАШИХ ДРУЗЕЙ</span>
+            <h2 id="guest-title" class="display">НЕТ ПРИГЛАШЕНИЯ? ПРИХОДИ С ДРУГОМ.</h2>
+            <p>Если тебя зовёт друг, у которого уже есть приглашение, вход для тебя:</p>
+            <strong class="guest-price">1.500 р</strong>
+            <p>За подробностями пиши мне в Telegram.</p>
           </div>
           <a class="button button-dark contact-button" :href="organizer.telegramUrl" target="_blank" rel="noopener noreferrer" aria-label="Написать Егору в Telegram, zavoz_contenta">
             <Icon name="telegram" />
@@ -221,6 +224,8 @@ onUnmounted(() => {
         </div>
       </section>
 
+      
+
       <section class="closing-section" aria-labelledby="closing-title">
         <div class="wrap closing-inner" data-reveal><span class="eyebrow">ЭТОТ БИЛЕТ — ДЛЯ ТЕБЯ</span><h2 id="closing-title" class="display">18 СЛУЧАЕТСЯ<br />ОДИН РАЗ.</h2><p>Проведём его вместе.</p><button class="button button-light" @click="openCalendar">Сохранить дату <Icon name="calendar" /></button><div class="closing-meta"><span>5—6 ДЕКАБРЯ {{ year }}</span><Icon name="sparkle" /><span>БРЯНСК / СВОИ ЛЮДИ</span></div><span class="closing-18 display" aria-hidden="true">18</span></div>
       </section>
@@ -229,7 +234,7 @@ onUnmounted(() => {
     <footer class="site-footer wrap"><a class="wordmark" href="#main">ЕА<span> / 18</span></a><a class="footer-contact" :href="organizer.telegramUrl" target="_blank" rel="noopener noreferrer"><Icon name="telegram" /> {{ organizer.telegramHandle }}</a><a class="back-top" href="#main">НАВЕРХ <Icon name="arrow" /></a></footer>
 
     <dialog ref="calendarDialog" class="calendar-dialog" aria-labelledby="calendar-title" @click="e => { if (e.target === calendarDialog) calendarDialog.close() }">
-      <div class="calendar-dialog-inner"><button class="dialog-close" aria-label="Закрыть выбор календаря" @click="calendarDialog.close()"><Icon name="close" /></button><span class="eyebrow">ЗАБРОНИРУЙ ЭТОТ УИКЕНД</span><h2 id="calendar-title" class="display">УВИДИМСЯ<br />5 ДЕКАБРЯ.</h2><p class="calendar-summary">5 декабря, 18:00 — 6 декабря, 11:00<br />{{ year }} · время московское</p><a class="calendar-option" href="/egor-18.ics"><Icon name="calendar" /><span><strong>Apple Calendar / файл .ics</strong><small>iPhone, iPad и другие календари</small></span><Icon name="arrow" /></a><a class="calendar-option" :href="calendarUrl" target="_blank" rel="noopener noreferrer"><Icon name="calendar" /><span><strong>Google Calendar</strong><small>Android и любой браузер</small></span><Icon name="arrow" /></a><p class="calendar-help">В файле .ics есть напоминание за сутки. В Google Calendar проверь уведомление перед сохранением. Если .ics скачался, импортируй его в календарь; на iPhone можно открыть его через Mail.</p><a class="ics-download" href="/egor-18.ics" download="egor-18.ics">Скачать файл события</a></div>
+      <div class="calendar-dialog-inner"><button class="dialog-close" aria-label="Закрыть выбор календаря" @click="calendarDialog.close()"><Icon name="close" /></button><span class="eyebrow">ЗАБРОНИРУЙ ЭТОТ УИКЕНД</span><h2 id="calendar-title" class="display">УВИДИМСЯ<br />5 ДЕКАБРЯ.</h2><p class="calendar-summary">5 декабря, 18:00 — 6 декабря, 11:00<br />{{ year }} · время московское</p><a class="calendar-option" :href="appleCalendarUrl"><Icon name="calendar" /><span><strong>Открыть Apple Calendar</strong><small>iPhone, iPad и Mac · подписка на календарь</small></span><Icon name="arrow" /></a><a class="calendar-option" :href="calendarUrl" target="_blank" rel="noopener noreferrer"><Icon name="calendar" /><span><strong>Google Calendar</strong><small>Android и любой браузер</small></span><Icon name="arrow" /></a><p class="calendar-help">Apple Calendar предложит подписаться на календарь праздника. В Google Calendar проверь уведомление перед сохранением. Если календарь не открылся, скачай файл события с напоминанием за сутки и импортируй его; на iPhone можно открыть его через Mail.</p><a class="ics-download" href="/egor-18.ics" download="egor-18.ics">Скачать файл события</a></div>
     </dialog>
     <Transition name="toast"><div v-if="toast" class="toast-message" role="status"><Icon name="check" />{{ toast }}</div></Transition>
     <div v-if="confetti.length" class="confetti-layer" aria-hidden="true"><i v-for="piece in confetti" :key="piece.id" :style="{ left: piece.left, '--delay': piece.delay, '--duration': piece.duration, '--rotate': piece.rotate, '--drift': piece.drift }"></i></div>

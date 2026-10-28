@@ -26,8 +26,9 @@ export const event = {
 }
 
 export const trainLinks = {
-  outbound: 'https://www.tutu.ru/poezda/Moskva/Bryansk/',
-  inbound: 'https://www.tutu.ru/poezda/Bryansk/Moskva/'
+  outbound: 'https://ticket.rzd.ru/searchresults/v/1/5a323c29340c7441a0a556bb/5a13bbe4340c745ca1e83994/2026-12-05?aim=social-media&trainNumber=737%D0%90&adult=1',
+  inbound: 'https://ticket.rzd.ru/searchresults/v/1/5a13bbe4340c745ca1e83994/5a323c29340c7441a0a556bb/2026-12-06?aim=social-media&trainNumber=740%D0%90&adult=1'
+  
 }
 
 export const saturday = [
